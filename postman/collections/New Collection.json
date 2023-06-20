@@ -1,0 +1,108 @@
+{
+	"info": {
+		"_postman_id": "7564b007-caf0-4da9-a893-b5ea36f8f518",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "27999979-7564b007-caf0-4da9-a893-b5ea36f8f518"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/profile",
+			"id": "033ed577-b6bf-40ed-ba59-c8bb92da69c7",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":2,\r\n    \"data\":{\r\n        \"Name\":\"Aswin Sreekumar\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/profile",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/profile",
+			"id": "9bdbf526-edd1-4d41-a93d-3f96b12eb466",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":2,\r\n    \"data\":{\r\n        \"Name\":\"Aswin Sreekumar\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/profile",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"profile"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "4109b52f-78b3-4590-a609-28b2882118c9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "538a5b84-d677-45d5-a73c-80c42cc7e6fb",
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});",
+					"if(pm.request.method==\"GET\"){",
+					"pm.test(\"Response body has correct JSON structure\", function () {",
+					"     var jsonData = pm.response.json();",
+					"    pm.expect(jsonData).to.be.an(\"array\");",
+					"    jsonData.forEach(function (item) {",
+					"        pm.expect(item).to.have.property(\"id\");",
+					"        pm.expect(item).to.have.property(\"data\");",
+					"        pm.expect(item.data).to.be.an(\"object\");",
+					"    });",
+					"});",
+					"}",
+					""
+				]
+			}
+		}
+	]
+}
